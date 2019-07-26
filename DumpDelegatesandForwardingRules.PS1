@@ -6,7 +6,7 @@ $AllUsers = Get-User | select ObjectID, UserPrincipalName, FirstName, LastName, 
 $UserInboxRules = @()
 $UserDelegates = @()
 
-> foreach ($User in $allUsers)
+foreach ($User in $allUsers)
 >> {
 >>     Write-Host "Checking inbox rules and delegates for user: " $User.UserPrincipalName;
 >>     $UserInboxRules += Get-InboxRule -Mailbox $User.UserPrincipalname | Select Name, Description, Enabled, Priority, ForwardTo, ForwardAsAttachmentTo, RedirectTo, DeleteMessage | Where-Object {($_.ForwardTo -ne $null) -or ($_.ForwardAsAttachmentTo -ne $null) -or ($_.RedirectsTo -ne $null)}
