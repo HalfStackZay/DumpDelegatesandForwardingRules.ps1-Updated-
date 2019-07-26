@@ -1,4 +1,6 @@
-Connect-IPPSSession -UserPrincipalName <upn>
+#connect to exchange online powershell module using your upn
+Connect-EXOPSSession -UserPrincipalName <upn>
+
 $AllUsers = Get-User | select ObjectID, UserPrincipalName, FirstName, LastName, StrongAuthenticationRequirements, StsRefreshTokensValidFrom, StrongPasswordRequired, LastPasswordChangeTimestamp | Where-Object {($_.UserPrincipalName -notlike "*#EXT#*")}
 
 $UserInboxRules = @()
